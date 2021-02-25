@@ -13,5 +13,5 @@ package inf101;
  * @author Martin Vatshelle - martin.vatshelle@uib.no
  */
 public class GetStarted {
-	public static boolean hasRead = false;
+	public static boolean hasRead = true;
 }

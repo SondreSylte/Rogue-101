@@ -175,6 +175,7 @@ public interface IItem {
 	 */
 	int handleDamage(int amount);
 
+
 	/**
 	 * Items may stay on the board with health 0 (as dead remains).
 	 * 

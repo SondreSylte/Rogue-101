@@ -68,7 +68,20 @@ public class Carrot implements IItem {
 
 	@Override
 	public int handleDamage(int amount) {
-		return amount;
+		int damageDone = amount;
+		//setter damageDone til å være lik amount, den faktiske damagen som blir gitt.
+		//sjekker om damagen er mer enn hp'en til tingen.
+		//om damagen er mer enn det tingen tåler, setter vi hp til 0, fordi den er ødelagt.
+		//Vi setter først damageDone til hp, fordi man kan ikke påføre mer damage enn hp.
+		// else, setter vi at damageDone er hp - amount, og returnerer damageDone.
+		if (amount > hp){
+			damageDone = hp;
+			hp = 0;
+		} else {
+			damageDone = amount;
+			hp -= amount;
+		}
+		return damageDone;
 	}
 	
 	@Override
