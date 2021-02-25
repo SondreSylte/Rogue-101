@@ -1,0 +1,46 @@
+package inf101.rogue101.objects;
+
+public class Gold implements IItem{
+    public static final char SYMBOL = 'G';
+    private int hp = getMaxHealth();
+
+    @Override
+    public int getCurrentHealth() {
+        return 0;
+    }
+
+    @Override
+    public int getDefence() {
+        return 0;
+    }
+
+    @Override
+    public int getMaxHealth() {
+        return 0;
+    }
+
+    @Override
+    public String getLongName() {
+        return null;
+    }
+
+    @Override
+    public String getShortName() {
+        return null;
+    }
+
+    @Override
+    public int getSize() {
+        return 0;
+    }
+
+    @Override
+    public int handleDamage(int amount) {
+        return 0;
+    }
+
+    @Override
+    public char getSymbol() {
+        return 0;
+    }
+}
