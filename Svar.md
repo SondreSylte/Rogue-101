@@ -11,11 +11,11 @@
 
 ### 1.1) 
 
-1. (svar her) 
-2. (svar her) 
-3. (svar her) 
-4. (svar her) 
-5. (svar her) 
+1. boolean isPlaying(); returnerer True om spilleren er aktiv og klar til å spille.
+2. void movePlayer(); som har feks et parameter basert på gridden til spillet og retning.  
+3. int getDamage(); som returnerer en int basert på hvor mye damage spilleren gir andre aktører.
+4. int getHealthLost(); som returnerer en int (health) basert på hvor mye damage aktøren har tapt på å bli angrepet av spilleren. 
+5. int getHealth(); som returnerer en int basert på hvor mye health aktøren har igjen.
 
 ### 1.2) 
 1. (svar her) 
