@@ -33,7 +33,7 @@
 5. //string getTaste(); er en metode som ikke finnes i klassen, men som kan returnere en string som sier noe om hva aktøren smaker.  
 
 ### 1.4)
-(svar her)
+Amulet, Carrot, Dust, IActor, Wall blir implentert direkte. Alle de andre klassene under filen objects blir implementert indirekte gjennom andre interfaces, som alle ligger under interfacet IItem. 
 
 ### 1.4)
 (svar her)
