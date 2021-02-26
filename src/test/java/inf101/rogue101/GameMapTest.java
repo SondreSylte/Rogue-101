@@ -157,7 +157,7 @@ public class GameMapTest {
 
 		List<GridDirection> moves = map.getPossibleMoves(loc);
 		assertFalse(moves.contains(GridDirection.CENTER),"CENTER should not be in possiblemoves");
-		for(GridDirection dir : GridDirection.values()) {
+		for(GridDirection dir : GridDirection.EIGHT_DIRECTIONS) {
 			assertEquals(map.canGo(loc,dir),moves.contains(dir));
 		}
 	}

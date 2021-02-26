@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import inf101.grid.GridDirection;
-import inf101.grid.IGrid;
-import inf101.grid.IMultiGrid;
-import inf101.grid.Location;
-import inf101.grid.MultiGrid;
+import inf101.grid.*;
 import inf101.rogue101.objects.IActor;
 import inf101.rogue101.objects.IItem;
 import inf101.rogue101.objects.IItemComparator;
@@ -180,7 +176,12 @@ public class GameMap implements IGameMap {
 
 	@Override
 	public List<GridDirection> getPossibleMoves(Location currentLocation) {
-		return List.of(GridDirection.EAST); // TODO: Improve this
+		List<GridDirection> possibleMoves = new ArrayList<>();
+		for (GridDirection direction : GridDirection.EIGHT_DIRECTIONS) {
+			if (canGo(currentLocation, direction))
+				possibleMoves.add(direction);
+		}
+		return possibleMoves; // TODO: Finished
 	}
 
 	@Override
