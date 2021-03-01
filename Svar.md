@@ -41,10 +41,10 @@ Amulet, Carrot, Dust, IActor, Wall blir implentert direkte. Alle de andre klasse
 ## Oppgave 2 - The Rabbit
 
 ### 2.1)
-(Svar her)
+IActor klassen utvider og benytter metodene til IItem interfacet. Extend tyder dermed at IActor arver på IItem, dermed er IActor en subclass (barnet), og IItem er en superclass (forelder). Arv kan defineres som prosessen der en klasse tilegner seg egenskapene (metoder og felt) til en annen. Ved bruk av arv blir informasjonen gjort håndterbar i en hierarkisk rekkefølge.
 
 ### 2.2)
-(Svar her)
+I metoden doTurn() blir det først bestemt om Rabbit er sulten eller ikke i isHungry. Om den er sulten, spiser den i ruten den står i om mulig (eatIfPossible()). Om den har mat (gotFood), er vurderingen slutt og det returneres tilbake til starten av metoden. Videre blir det laget en variabel dir, som bruker en annen metode, selectMove() +++
 
 ### 2.3)
 (Svar her)
@@ -55,7 +55,8 @@ Amulet, Carrot, Dust, IActor, Wall blir implentert direkte. Alle de andre klasse
 ## Oppgave 3 - Objektfabrikken
 
 ### 3.1)
-(svar her)
+Symbolet "@" representerer et Player-objekt, og en finner det i klassen Player. ++
+Symbolet "." representerer Dust-objektet og en finner det i klassen Dust. ++
 
 ### 3.2)
 (svar her)
