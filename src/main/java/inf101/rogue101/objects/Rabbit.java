@@ -36,9 +36,17 @@ public class Rabbit implements IActor {
 				return;
 			}
 		}
-
 		GridDirection dir = selectMove(game);
 		performMove(game,dir);
+
+		/**
+		 * Gjør koden "smartere" ved å sjekke om det befinner seg en gulrot i nærmeste celler.
+		 * "This method checks if a neighbour location contains an item of a specific class"
+		 */
+		if (game.containsItem(dir, IActor.class))
+			game.attack(dir);
+			return;
+
 	}
 
 	/**

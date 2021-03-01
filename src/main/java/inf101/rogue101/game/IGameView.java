@@ -27,7 +27,7 @@ public interface IGameView extends IMessageView{
 	/**
 	 * Perform an attack by the current {@link IActor} in the provided direction
 	 * If the location in the direction is occupied by another {@link IActor}, 
-	 * the attack is performed similarly to {@link attack(GridDirection, IItem)}.
+	 * the attack is performed similarly to {@link /attack(GridDirection, IItem)}.
 	 * 
 	 * @param dir the direction to attack in 
 	 * @return true if attack succeeds, false otherwise
@@ -135,7 +135,7 @@ public interface IGameView extends IMessageView{
 	 *     boolean found = game.containsItem(dir, Gold.class)
 	 *     
 	 * @param <T> class of the item
-	 * @param loc the location
+	 * @param /loc the location
 	 * @param c class of the item
 	 * @return true if location contains an item of that class 
 	 */

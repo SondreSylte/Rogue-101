@@ -20,6 +20,10 @@ public class ItemFactory {
 			return Amulet.getInstance();
 		case '*':
 			return new Portal();
+			case '.':
+				return new Dust();
+			case 'G':
+				return new Gold();
 		case ' ':
 			return null;
 		default : 	
