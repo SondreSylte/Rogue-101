@@ -2,27 +2,29 @@ package inf101.rogue101.game;
 
 import inf101.rogue101.objects.*;
 
+import java.text.DateFormatSymbols;
+
 public class ItemFactory {
 
 	public static IItem createItem(char symbol) {
 		switch(symbol) {
-		case '#':
+			case Wall.SYMBOL:
 			return new Wall();
-		case 'R':
+			case Rabbit.SYMBOL:
 			return new Rabbit();
-		case 'C':
+			case Carrot.SYMBOL:
 			return new Carrot();
-		case '@':
+			case Player.SYMBOL:
 			return new Player();
-		case 'S':
+			case Spider.SYMBOL:
 			return new Spider();
-		case 'A':
+			case Amulet.SYMBOL:
 			return Amulet.getInstance();
-		case '*':
+			case Portal.SYMBOL:
 			return new Portal();
-			case '.':
+			case Dust.SYMBOL:
 				return new Dust();
-			case 'G':
+			case Gold.SYMBOL:
 				return new Gold();
 		case ' ':
 			return null;

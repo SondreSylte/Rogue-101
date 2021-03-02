@@ -35,17 +35,19 @@ public class Rabbit implements IActor {
 				//Rabbit is full and prefers to rest
 				return;
 			}
+
+			/**
+			 * Gjør koden "smartere" ved å sjekke om det befinner seg en gulrot i nærmeste celler.
+			 * "This method checks if a neighbour location contains an item of a specific class"
+			 */
 		}
 		GridDirection dir = selectMove(game);
-		performMove(game,dir);
-
-		/**
-		 * Gjør koden "smartere" ved å sjekke om det befinner seg en gulrot i nærmeste celler.
-		 * "This method checks if a neighbour location contains an item of a specific class"
-		 */
-		if (game.containsItem(dir, IActor.class))
-			game.attack(dir);
-			return;
+		for(GridDirection carrotDirection : GridDirection.EIGHT_DIRECTIONS) {
+			if(game.containsItem(carrotDirection,Carrot.class)) {
+				dir = carrotDirection;
+			}
+			performMove(game,dir);
+		}
 
 	}
 
