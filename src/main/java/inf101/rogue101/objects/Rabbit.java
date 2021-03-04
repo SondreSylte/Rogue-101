@@ -41,12 +41,30 @@ public class Rabbit implements IActor {
 			 * "This method checks if a neighbour location contains an item of a specific class"
 			 */
 		}
-		GridDirection dir = selectMove(game);
-		for(GridDirection carrotDirection : GridDirection.EIGHT_DIRECTIONS) {
-			if(game.containsItem(carrotDirection,Carrot.class)) {
-				dir = carrotDirection;
+
+		List<IItem> nearbyItems = game.getNearbyItems(3);
+		GridDirection nearbyCarrot = null;
+		for(IItem item : nearbyItems)
+		{
+			if(item instanceof  Carrot)
+			{
+				nearbyCarrot = game.getDirectionTo(item);
+				break;
 			}
-			performMove(game,dir);
+		}
+		if (nearbyCarrot != null ) {
+			performMove(game, nearbyCarrot);
+		}
+		else {
+			GridDirection dir = selectMove(game);
+			if (dir != null) {
+				for (GridDirection carrotDirection : GridDirection.EIGHT_DIRECTIONS) {
+					if (game.containsItem(carrotDirection, Carrot.class)) {
+						dir = carrotDirection;
+					}
+					performMove(game, dir);
+				}
+			}
 		}
 
 	}
@@ -57,7 +75,10 @@ public class Rabbit implements IActor {
 	private GridDirection selectMove(IGameView game) {
 		List<GridDirection> possibleMoves = game.getPossibleMoves();
 		Collections.shuffle(possibleMoves);
-		return possibleMoves.get(0);
+		if (possibleMoves.size() > 0 )
+			return possibleMoves.get(0);
+		else return null;
+		//return possibleMoves.get(0);
 	}
 
 	/**

@@ -80,6 +80,17 @@ public class Location {
 	 * @return The direction to go in.
 	 */
 	public GridDirection directionTo(Location loc) {
+		int dx = (loc.col - col) /Math.max(1,Math.abs(loc.col - col));
+		int dy = (loc.row - row) /Math.max(1,Math.abs(loc.row - row));
+		if (dx == 1 && dy == 0) return GridDirection.EAST;
+		if (dx == 0 && dy == -1) return GridDirection.NORTH;
+		if (dx == -1 && dy == 0) return GridDirection.WEST;
+		if (dx == 0 && dy == 1) return GridDirection.SOUTH;
+		if (dx == 1 && dy == -1) return GridDirection.NORTHEAST;
+		if (dx == -1 && dy == -1) return GridDirection.NORTHWEST;
+		if (dx == 1 && dy == 1) return GridDirection.SOUTHEAST;
+		if (dx == -1 && dy == 1) return GridDirection.SOUTHWEST;
+
 		// TODO Auto-generated method stub
 		return null;
 	}
