@@ -90,7 +90,7 @@ public class IActorTest {
 	}
 	/**
 	 * Tests that after calling doTurn the actor is in 
-	 * one of the locations given by {@link game.Game#getPossibleMoves()}
+	 * one of the locations given by {@link //game.Game#getPossibleMoves()}
 	 * @param actor
 	 */
 	void testDoTurn(IActor actor) {

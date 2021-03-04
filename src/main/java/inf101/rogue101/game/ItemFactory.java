@@ -9,19 +9,19 @@ public class ItemFactory {
 	public static IItem createItem(char symbol) {
 		switch(symbol) {
 			case Wall.SYMBOL:
-			return new Wall();
+				return new Wall();
 			case Rabbit.SYMBOL:
-			return new Rabbit();
+				return new Rabbit();
 			case Carrot.SYMBOL:
-			return new Carrot();
+				return new Carrot();
 			case Player.SYMBOL:
-			return new Player();
+				return new Player();
 			case Spider.SYMBOL:
-			return new Spider();
+				return new Spider();
 			case Amulet.SYMBOL:
-			return Amulet.getInstance();
+				return Amulet.getInstance();
 			case Portal.SYMBOL:
-			return new Portal();
+				return new Portal();
 			case Dust.SYMBOL:
 				return new Dust();
 			case Gold.SYMBOL:

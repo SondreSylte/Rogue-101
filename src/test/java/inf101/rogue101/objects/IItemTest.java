@@ -196,7 +196,7 @@ public class IItemTest {
 	 * @return
 	 */
 	List<IItem> getTestData(boolean newItemsOnly) {
-		char[] itemSymbols = { Dust.SYMBOL, Wall.SYMBOL, Carrot.SYMBOL, Rabbit.SYMBOL, Spider.SYMBOL, GOLD_SYMBOL };
+		char[] itemSymbols = { Dust.SYMBOL, Wall.SYMBOL, Carrot.SYMBOL, Rabbit.SYMBOL, Spider.SYMBOL, Gold.SYMBOL };
 
 		List<IItem> list = new ArrayList<>();
 

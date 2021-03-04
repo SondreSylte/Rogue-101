@@ -1,8 +1,6 @@
 package inf101.rogue101.map;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import inf101.grid.*;
 import inf101.rogue101.objects.IActor;
@@ -165,13 +163,39 @@ public class GameMap implements IGameMap {
 
 	@Override
 	public List<Location> getNeighbourhood(Location loc, int dist) {
+
 		if (dist < 0 || loc == null)
 			throw new IllegalArgumentException();
 		else if (dist == 0)
-			return new ArrayList<>(); // empty!
+			return new ArrayList<>();// empty!
 
-		throw new UnsupportedOperationException();
+		//List to be returned with all neighbours
+		List<Location> Neighbourhood = new ArrayList<>();
+		Location tempLocation;
+		//Add the current location so that set is not empty when iterated over
+		Neighbourhood.add(loc);
+
+		//For loop to repeat process for all dist.
+		for (int i = 0; i < dist; i++) {
+			List<Location> tempList = new ArrayList<>(Neighbourhood);
+			for (Location currentLocation : tempList) {
+				for(GridDirection dir : GridDirection.EIGHT_DIRECTIONS){
+					if (canGo(currentLocation, dir)){
+						tempLocation = currentLocation.getNeighbor(dir);
+						if (!Neighbourhood.contains(tempLocation)){
+							Neighbourhood.add(tempLocation);
+						}
+					}
+				}
+			}
+
+		}
+		Neighbourhood.remove(loc);
+		Collections.sort(Neighbourhood, new LocationComparator(loc));
+		return Neighbourhood;
+
 	}
+
 	
 
 	@Override

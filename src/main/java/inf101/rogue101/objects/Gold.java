@@ -6,7 +6,7 @@ public class Gold implements IItem{
 
     @Override
     public int getCurrentHealth() {
-        return 0;
+        return hp;
     }
 
     @Override
@@ -16,22 +16,22 @@ public class Gold implements IItem{
 
     @Override
     public int getMaxHealth() {
-        return 0;
+        return 15;
     }
 
     @Override
     public String getLongName() {
-        return null;
+        return "gold";
     }
 
     @Override
     public String getShortName() {
-        return null;
+        return "expensive gold";
     }
 
     @Override
     public int getSize() {
-        return 0;
+        return 2;
     }
 
     @Override
