@@ -1,5 +1,6 @@
 package inf101.rogue101.objects;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,8 @@ public class Player implements IPlayer {
 	private int damage;
 	private int hp;
 	private String name;
+	private IItem hand = null;
+	List<IItem> inventory = new ArrayList<>();
 
 	public Player() {
 		attack = 10;
@@ -148,11 +151,27 @@ public class Player implements IPlayer {
 			Collections.sort(items,new IItemComparator());
 			Optional<IItem> found = game.pickUp(items.get(items.size()-1));
 			if(found.isPresent())
+				if (hand == null) {
+					hand = found.get();
+				}
+			else {
+				inventory.add(found.get());
+				}
+
 				game.displayMessage("Picked up"+found.get().getLongName());
 		}
 	}
 
 	private void drop(IGameView game) {
+		if (inventory == null){
+			game.displayMessage("Holds nothing");
+		}
+		if (!(hand == null)) {
+			game.drop(hand);
+			if (!inventory.isEmpty()) {
+				hand = inventory.get(0);
+			}
+		}
 	}
 
 	@Override
@@ -166,7 +185,7 @@ public class Player implements IPlayer {
 
 	@Override
 	public boolean hasItem(IItem item) {
-		return false;
+		return inventory.contains(item) || hand.equals(item);
 	}
 	
 	@Override

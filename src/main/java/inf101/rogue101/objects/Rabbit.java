@@ -46,7 +46,7 @@ public class Rabbit implements IActor {
 		GridDirection nearbyCarrot = null;
 		for(IItem item : nearbyItems)
 		{
-			if(item instanceof  Carrot)
+			if(item instanceof Carrot)
 			{
 				nearbyCarrot = game.getDirectionTo(item);
 				break;
@@ -61,10 +61,13 @@ public class Rabbit implements IActor {
 				for (GridDirection carrotDirection : GridDirection.EIGHT_DIRECTIONS) {
 					if (game.containsItem(carrotDirection, Carrot.class)) {
 						dir = carrotDirection;
+						break;
 					}
-					performMove(game, dir);
+
 				}
+				performMove(game, dir);
 			}
+
 		}
 
 	}

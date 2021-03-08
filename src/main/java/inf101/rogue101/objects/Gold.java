@@ -41,6 +41,6 @@ public class Gold implements IItem{
 
     @Override
     public char getSymbol() {
-        return 0;
+        return SYMBOL;
     }
 }
