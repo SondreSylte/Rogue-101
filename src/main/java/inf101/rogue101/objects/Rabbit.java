@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import inf101.gfx.textmode.Printer;
+import inf101.grid.Grid;
 import inf101.grid.GridDirection;
 import inf101.rogue101.game.IGameView;
 import javafx.scene.paint.Color;
@@ -31,46 +32,42 @@ public class Rabbit implements IActor {
 		boolean isHungry = getMaxHealth()-getCurrentHealth()>2;
 		if(isHungry) {
 			boolean gotFood = eatIfPossible(game);
-			if(gotFood) {
-				//Rabbit is full and prefers to rest
+			if (gotFood) {
 				return;
 			}
-
-			/**
-			 * Gjør koden "smartere" ved å sjekke om det befinner seg en gulrot i nærmeste celler.
-			 * "This method checks if a neighbour location contains an item of a specific class"
-			 */
 		}
 
-		List<IItem> nearbyItems = game.getNearbyItems(3);
+		GridDirection dir = selectMove(game);
+		performMove(game,dir);
+
+		List<IItem> nearbyItems = game.getNearbyItems(12);
 		GridDirection nearbyCarrot = null;
-		for(IItem item : nearbyItems)
-		{
-			if(item instanceof Carrot)
-			{
+		for (IItem item : nearbyItems){
+			if (item instanceof Carrot) {
 				nearbyCarrot = game.getDirectionTo(item);
+				performMove(game,nearbyCarrot);
 				break;
 			}
 		}
-		if (nearbyCarrot != null ) {
+		if (nearbyCarrot != null) {
 			performMove(game, nearbyCarrot);
 		}
 		else {
-			GridDirection dir = selectMove(game);
-			if (dir != null) {
-				for (GridDirection carrotDirection : GridDirection.EIGHT_DIRECTIONS) {
-					if (game.containsItem(carrotDirection, Carrot.class)) {
+			//GridDirection dir = selectMove(game);
+			if (dir != null)
+				for (GridDirection carrotDirection : GridDirection.EIGHT_DIRECTIONS){
+					if (game.containsItem(carrotDirection,Carrot.class)) {
 						dir = carrotDirection;
 						break;
 					}
-
 				}
-				performMove(game, dir);
-			}
+			performMove(game,dir);
 
 		}
+}
 
-	}
+
+
 
 	/**
 	 * This method selects which move the Rabbit want to make.

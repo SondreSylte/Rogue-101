@@ -142,7 +142,12 @@ public class Player implements IPlayer {
 	}
 
 	private void showStatus(IGameView game) {
-		game.displayMessage("Player has " + this.hp + " hp left");
+		if (hand == null) {
+			game.displayMessage("The hand is empty!");
+		}else {
+			game.displayMessage("Player has " + this.hp + " hp left holding " + this.hand.getLongName());
+		}
+
 	}
 
 	private void pickUp(IGameView game) {

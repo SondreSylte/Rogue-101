@@ -6,7 +6,7 @@ import java.util.Collection;
 /**
  * This class represents a Location on a grid.
  * That means indices for row and column.
- * 
+ *
  * @author Martin Vatshelle - martin.vatshelle@uib.no
  *
  */
@@ -14,11 +14,11 @@ public class Location {
 
 	public final int row;
 	public final int col;
-	
+
 	/**
 	 * Constructor for location, note that a Location is independent of the Grid implementation,
 	 * hence can have values not corresponding to a cell in the grid.
-	 * 
+	 *
 	 * @param row
 	 * @param col
 	 */
@@ -26,11 +26,11 @@ public class Location {
 		this.row = row;
 		this.col = col;
 	}
-	
+
 	/**
 	 * Gets the Location of the adjacent cell in the given direction.
 	 * {@link GridDirection#getNeighbor}
-	 * 
+	 *
 	 * @param dir The direction to go in
 	 * @return The adjacent location
 	 */
@@ -42,75 +42,81 @@ public class Location {
 	 * Returns the Manhattan distance between 2 locations.
 	 * That is the shortest distance distance between two points
 	 * if you can only go East,West,North and South (not diagonally)
+	 *
 	 * @param loc
 	 * @return
 	 */
 	public int gridDistanceTo(Location loc) {
-		return Math.abs(row-loc.row)+Math.abs(col-loc.col);
+		return Math.abs(row - loc.row) + Math.abs(col - loc.col);
 	}
 
 	/**
 	 * Returns a list of the eight neighbors around this location
-	 * 
+	 *
 	 * @return
 	 */
 	public Collection<Location> allNeighbors() {
 		ArrayList<Location> neighbours = new ArrayList<Location>();
-		for(GridDirection dir : GridDirection.EIGHT_DIRECTIONS)
+		for (GridDirection dir : GridDirection.EIGHT_DIRECTIONS)
 			neighbours.add(this.getNeighbor(dir));
 		return neighbours;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Location) {
+		if (obj instanceof Location) {
 			Location loc = (Location) obj;
 			return this.row == loc.row && this.col == loc.col;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "("+row+","+col+")";
+		return "(" + row + "," + col + ")";
 	}
+
 	/**
 	 * Finds one GridDirection such that the distance to loc decreases if one go in that direction.
+	 *
 	 * @param loc The location one wants to go in.
 	 * @return The direction to go in.
 	 */
 	public GridDirection directionTo(Location loc) {
 
-		int dx = ((loc.col - col) / Math.max(1, Math.abs(loc.col - col)));
-		int dy = ((loc.row - row) / Math.max(1, Math.abs(loc.row - row)));
 
-		if (dx == 1 && dy == 0){
+		/**for (GridDirection dir : GridDirection.EIGHT_DIRECTIONS) {
+			Location neigh = getNeighbor(dir);
+			if (neigh.equals(loc)) {
+				return dir;
+			}
+		}
+		return GridDirection.CENTER;
+	}
+}**/
+
+
+		int dy = ((loc.col - col) / Math.max(1, Math.abs(loc.col - col)));
+		int dx = ((loc.row - row) / Math.max(1, Math.abs(loc.row - row)));
+
+		if (dx == 1 && dy == 0) {
 			return GridDirection.EAST;
-		}
-		else if (dx == 0 && dy == -1){
+		} else if (dx == 0 && dy == -1) {
 			return GridDirection.NORTH;
-		}
-		else if (dx == -1 && dy == 0){
+		} else if (dx == -1 && dy == 0) {
 			return GridDirection.WEST;
-		}
-		else if (dx == 0 && dy == 1){
+		} else if (dx == 0 && dy == 1) {
 			return GridDirection.SOUTH;
-		}
-		else if (dx == 1 && dy == -1){
+		} else if (dx == 1 && dy == -1) {
 			return GridDirection.NORTHEAST;
-		}
-		else if (dx == -1 && dy == -1){
+		} else if (dx == -1 && dy == -1) {
 			return GridDirection.NORTHWEST;
-		}
-		else if (dx == 1 && dy == 1){
+		} else if (dx == 1 && dy == 1) {
 			return GridDirection.SOUTHEAST;
-		}
-		else if (dx == -1 && dy == 1){
+		} else if (dx == -1 && dy == 1) {
 			return GridDirection.SOUTHWEST;
 		} else
-			return null;
-
-		// TODO Auto-generated method stub
-
+			return GridDirection.CENTER;
 	}
 }
+
