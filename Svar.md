@@ -3,7 +3,7 @@
 *I denne filen legger du inn svar på spørsmålene som stilles i oppgaveteksten, eventuelt kommentarer og informasjon om kreative løsninger*
 
 ## Kommentarer
-(Eventuelle kommentarer på oppgaven eller koden her).
+Har i deler av oppgaven samarbeidet godt med Åsmund Groven, Belming Husanovic og Skage Lysgaard. 
 
 ## Spørsmål
 
@@ -11,26 +11,26 @@
 
 ### 1.1) 
 
-1. //boolean isPlaying(); returnerer True om spilleren er aktiv og klar til å spille. 
-2. //void movePlayer(); som har feks et parameter basert på gridden til spillet og retning.  
-3. //int getDamage(); som returnerer en int basert på hvor mye damage spilleren gir andre aktører.
-4. //int getHealthLost(); som returnerer en int (health) basert på hvor mye damage aktøren har tapt på å bli angrepet av spilleren. Eller omvendt. 
-5. //int getHealth(); som returnerer en int basert på hvor mye health aktøren har igjen.
+1. boolean isPlaying(); returnerer True om spilleren er aktiv og klar til å spille. 
+2. void movePlayer(); som har feks et parameter basert på gridden til spillet og retning.  
+3. int getDamage(); som returnerer en int basert på hvor mye damage spilleren gir andre aktører.
+4. int getHealthLost(); som returnerer en int (health) basert på hvor mye damage aktøren har tapt på å bli angrepet av spilleren. Eller omvendt. 
+5. int getHealth(); som returnerer en int basert på hvor mye health aktøren har igjen.
 
 ### 1.2) 
-1.  //int getCurrentHealth(); returnerer hvor mange health points et element av typen "ting" har igjen. Den kan feks returnere healthen til kaniner, edderkopper eller spilleren. 
-2. //default String getEmoji(); returnerer emojien til de forskjellige "tingene". 
-3. /int getMaxHealth(); returnerer "tingene" sin maksimale health.
-4. // int handleDamage(int amount); returnerer "informasjon" om tingene basert på egenskapene og hvor mye de forskjellige tingene tåler av damage i utgangspunktet. Den er alltid mindre eller lik getCurrentHealth.
-5. //default boolean isDestroyed(); returnerer en true eller false verdi basert på om tingen er ødelagt og om den skal bli fjernet fra kartet eller ikke. 
+1.  int getCurrentHealth(); returnerer hvor mange health points aktørene har igjen. Den kan feks returnere healthen til kaniner, edderkopper eller spilleren. 
+2. default String getEmoji(); returnerer emojien til de forskjellige aktørene. 
+3. int getMaxHealth(); returnerer aktørene sin maksimale health.
+4. int handleDamage(int amount); returnerer "informasjon" til aktørene basert på egenskapene og hvor mye de forskjellige aktørene tåler av damage i utgangspunktet. Den er alltid mindre eller lik getCurrentHealth.
+5. default boolean isDestroyed(); returnerer en true eller false verdi basert på om aktøren er ødelagt og om den skal bli fjernet fra kartet eller ikke. 
 
 
 ### 1.3)
-1. //int getCurrentHealth(); blir implementert i Carrot-klassen gjennom interfacet IItem. Den returnerer hp, altså healthen til gulroten, som er en aktør i spillet. 
-2. //default String getEmoji(); returnerer "Printer" ved hjelp av "coloured" metoden som tar inn en emoji som string, og gir den en farge. 
-3. //int getMaxHealth(); returnerer et integer som beskriver hp eller healthen til aktøren. 
-4. //string getShortName(); returnerer en string, som er navnet til aktøren. Et navn har også en ekte gulrot.  
-5. //string getTaste(); er en metode som ikke finnes i klassen, men som kan returnere en string som sier noe om hva aktøren smaker.  
+1. int getCurrentHealth(); blir implementert i Carrot-klassen gjennom interfacet IItem. Den returnerer hp, altså healthen til gulroten, som er en aktør i spillet. 
+2. default String getEmoji(); returnerer "Printer" ved hjelp av "coloured" metoden som tar inn en emoji som string, og gir den en farge. 
+3. int getMaxHealth(); returnerer et integer som beskriver hp eller healthen til aktøren. 
+4. string getShortName(); returnerer en string, som er navnet til aktøren. Et navn har også en ekte gulrot.  
+5. string getTaste(); er en metode som ikke finnes i klassen, men som kan returnere en string som sier noe om hva aktøren smaker.  
 
 ### 1.4)
 Amulet, Carrot, Dust, IActor, Wall blir implentert direkte. Alle de andre klassene under filen objects blir implementert indirekte gjennom andre interfaces, som alle ligger under interfacet IItem. 
@@ -55,19 +55,19 @@ I metoden doTurn() blir det først bestemt om Rabbit er sulten eller ikke i isHu
 ## Oppgave 3 - Objektfabrikken
 
 ### 3.1)
-Symbolet "@" representerer et Player-objekt, og en finner det i klassen Player. ++
-Symbolet "." representerer Dust-objektet og en finner det i klassen Dust. ++
+Symbolet "@" representerer et Player-objekt, og en finner det i klassen Player, som en feltvariabel. feltvariabelen gjør slik at alle metodene i klassen kan bruke variabelen.
+Symbolet "." representerer Dust-objektet og en finner det i klassen Dust, som en feltvariabel.
 
 ### 3.2)
-(svar her)
+Fordi, slik som det er forklart i SOLID, så påpeiker det første punktet at hver klasse skal ha et enkelt ansvar, og at det ansvaret kun skal anngå den spesifike klassen. Det vil si at om vi hadde endret symbolet i en klasse, så hadde det bare hatt påvirkning på den spesifikke klassen. Derfor vil vi endre, slik at vi tar ut symbolet direkte fra klassen ved å bruke "klassenavn".SYMBOL, istedenfor å endre character i hver klasse.
 
 ### 3.3)
-(svar her)
+Problemet er no fikset fordi metoden i ItemFactory kaller på Rabbit.SYMBOL i Rabbit klassen, og vil hente ut verdien som er angitt som SYMBOL. Om den verdien er endret til "r", vil den bli returnert "r", ettersom det er denne verdien ItemFactory returnerer.
 
 ## Oppgave 4 - Et smartere kart
 
 ### 4.1)
-(svar her)
+Gjorde oppgave 4 i samarbeid med Åsmund Groven.
 
 ### 4.2)
 (svar her)
@@ -95,7 +95,7 @@ Symbolet "." representerer Dust-objektet og en finner det i klassen Dust. ++
 ## Oppgave 6
 
 ### 6.1)
-(Svar her)
+Gjorde oppgave 6 i samarbeid med Skage Lysgaard og Belmin Husanovic.
 
 ### 6.2)
 (Svar her)
