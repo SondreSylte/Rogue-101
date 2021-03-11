@@ -28,42 +28,100 @@ public class Rabbit implements IActor {
 	private int hp = getMaxHealth();
 
 	@Override
-	public void doTurn(IGameView game) {
+	public void doTurn(IGameView game)/*{
 		boolean isHungry = getMaxHealth()-getCurrentHealth()>2;
 		if(isHungry) {
+			boolean gotFood = eatIfPossible(game);
+			if(gotFood) {
+				//Rabbit is full and prefers to rest
+				return;
+			}
+		}
+
+		List<GridDirection> possibleMoves = game.getPossibleMoves();
+		List<IItem> nearbyItems = game.getNearbyItems(10);
+		GridDirection carrotDirection = null;
+		for(IItem item : nearbyItems) {
+			if(item instanceof Carrot) {
+				carrotDirection = game.getDirectionTo(item);
+				if(possibleMoves.contains(carrotDirection)) {
+					performMove(game, carrotDirection);
+				}
+				else if(!possibleMoves.contains(carrotDirection)){//dersom cDirection ikke kan gå i retning gulrot
+					int index = GridDirection.EIGHT_DIRECTIONS.indexOf(carrotDirection);//Finner indexen til
+					for(GridDirection dir : possibleMoves) {
+						performMove(game, dir);
+					}
+				}
+			}
+		}
+
+		if(carrotDirection == null) {
+			GridDirection dir = selectMove(game);
+
+			for(GridDirection carrotDir : GridDirection.EIGHT_DIRECTIONS) {
+				if(game.containsItem(carrotDir, Carrot.class)) {
+					dir = carrotDir;
+				}
+				performMove(game,dir);
+
+			}
+		}
+	}
+
+
+
+	public GridDirection goAround() {
+
+		return null;
+	}*/
+
+
+
+	{
+
+		boolean isHungry = getMaxHealth() - getCurrentHealth() > 2;
+		if (isHungry) {
 			boolean gotFood = eatIfPossible(game);
 			if (gotFood) {
 				return;
 			}
 		}
 
-		GridDirection dir = selectMove(game);
-		performMove(game,dir);
 
-		List<IItem> nearbyItems = game.getNearbyItems(12);
+		List<IItem> nearbyItems = game.getNearbyItems(10);
 		GridDirection nearbyCarrot = null;
-		for (IItem item : nearbyItems){
+		for (IItem item : nearbyItems) {
 			if (item instanceof Carrot) {
 				nearbyCarrot = game.getDirectionTo(item);
-				performMove(game,nearbyCarrot);
+				System.out.println("Carrot direction" + nearbyCarrot.toString());
+				//performMove(game,nearbyCarrot);
 				break;
 			}
 		}
 		if (nearbyCarrot != null) {
-			performMove(game, nearbyCarrot);
-		}
-		else {
-			//GridDirection dir = selectMove(game);
-			if (dir != null)
-				for (GridDirection carrotDirection : GridDirection.EIGHT_DIRECTIONS){
-					if (game.containsItem(carrotDirection,Carrot.class)) {
-						dir = carrotDirection;
-						break;
+			if (game.canGo(nearbyCarrot)) {
+				performMove(game, nearbyCarrot);
+				return;
+			}
+		} else {
+			//GridDirection direction = selectMove(game);
+			for (GridDirection carrotDirection : GridDirection.EIGHT_DIRECTIONS) {
+				if (game.containsItem(carrotDirection, Carrot.class)) {
+					if (game.canGo(carrotDirection)) {
+						performMove(game, carrotDirection);
+						return;
 					}
 				}
-			performMove(game,dir);
 
+			}
 		}
+		GridDirection dir = selectMove(game);
+		performMove(game, dir);
+
+
+
+
 }
 
 
@@ -77,7 +135,7 @@ public class Rabbit implements IActor {
 		Collections.shuffle(possibleMoves);
 		if (possibleMoves.size() > 0 )
 			return possibleMoves.get(0);
-		else return null;
+		else return GridDirection.CENTER;
 		//return possibleMoves.get(0);
 	}
 

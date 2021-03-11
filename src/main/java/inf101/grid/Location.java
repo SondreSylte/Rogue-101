@@ -85,7 +85,7 @@ public class Location {
 	public GridDirection directionTo(Location loc) {
 
 
-		/**for (GridDirection dir : GridDirection.EIGHT_DIRECTIONS) {
+		/*for (GridDirection dir : GridDirection.EIGHT_DIRECTIONS) {
 			Location neigh = getNeighbor(dir);
 			if (neigh.equals(loc)) {
 				return dir;
@@ -93,8 +93,15 @@ public class Location {
 		}
 		return GridDirection.CENTER;
 	}
-}**/
+}*/
+		int dist = this.gridDistanceTo(loc);
+		for (GridDirection dir : GridDirection.EIGHT_DIRECTIONS) {
+			if (dist > this.getNeighbor(dir).gridDistanceTo(loc))
+				return dir;
+		}
+		return GridDirection.CENTER;
 
+		/*
 
 		int dy = ((loc.col - col) / Math.max(1, Math.abs(loc.col - col)));
 		int dx = ((loc.row - row) / Math.max(1, Math.abs(loc.row - row)));
@@ -117,6 +124,28 @@ public class Location {
 			return GridDirection.SOUTHWEST;
 		} else
 			return GridDirection.CENTER;
+
+		 */
 	}
 }
+/*
+	  	// TODO Auto-generated method stub
+		Location current = new Location(row, col); //Opprinnelig Location
+		GridDirection returnDirection = null;
+		int manhattanDistance = current.gridDistanceTo(loc);
+		for(GridDirection direction : GridDirection.EIGHT_DIRECTIONS) {
+			Location neighbor = current.getNeighbor(direction);
+			if(neighbor.gridDistanceTo(loc) < manhattanDistance){//Dersom avstanden fra naboen i 'direction' er mindre en det avstanden var fra opprinnelig Location
+				returnDirection = direction; //Setter return statement til direction
+				manhattanDistance = neighbor.gridDistanceTo(loc);
+			}
+		}
+		/*
+		 * lager to variabler: distance og temp
+		 * while manhattandistance > 0, regn ut manhattan distance = temp utenfor. Dersom den minker temp2 = temp, kjør loop igjen
+
+
+		return returnDirection;
+	}
+}*/
 

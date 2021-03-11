@@ -41,6 +41,14 @@ public class Carrot implements IItem {
 		return 0;
 	}
 
+	/*@Override
+	public boolean isDestroyed() {
+		if (hp == 0) {
+			return true;
+		}
+		return false;
+	}*/
+
 	@Override
 	public int getMaxHealth() {
 		return 5;
@@ -69,14 +77,14 @@ public class Carrot implements IItem {
 	@Override
 	public int handleDamage(int amount) {
 		int damageDone = amount;
-		//setter damageDone til å være lik amount, den faktiske damagen som blir gitt.
-		//sjekker om damagen er mer enn hp'en til tingen.
-		//om damagen er mer enn det tingen tåler, setter vi hp til 0, fordi den er ødelagt.
-		//Vi setter først damageDone til hp, fordi man kan ikke påføre mer damage enn hp.
-		// else, setter vi at damageDone er hp - amount, og returnerer damageDone.
+		/*setter damageDone til å være lik amount, den faktiske damagen som blir gitt.
+		Sjekker videre om damagen er mer enn hp'en til tingen.
+		Om damagen er mer enn det tingen tåler, setter vi hp til 0, fordi den er ødelagt.
+		Vi setter først damageDone til hp, fordi man kan ikke påføre mer damage enn hp.
+		Else, setter vi at damageDone er hp - amount, og returnerer damageDone. */
 		if (amount > hp){
 			damageDone = hp;
-			hp = 0;
+			hp = -1;
 		} else {
 			damageDone = amount;
 			hp -= amount;

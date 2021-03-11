@@ -25,7 +25,7 @@ public class GameView implements IGameView {
 	private IGame game;
 	private IActor currentActor;
 	/** This determines how far the actor can see */
-	int visionFactor;
+	int visionFactor = 10;
 	
 	
 	public GameView(Game game,IActor currentActor) {
