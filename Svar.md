@@ -3,7 +3,8 @@
 *I denne filen legger du inn svar på spørsmålene som stilles i oppgaveteksten, eventuelt kommentarer og informasjon om kreative løsninger*
 
 ## Kommentarer
-Har i deler av oppgaven samarbeidet godt med Åsmund Groven, Belming Husanovic og Skage Lysgaard. 
+Har i deler av oppgaven samarbeidet godt med Åsmund Groven (oppg 4). Har også diskutert oppgave 6 med Belming Husanovic og Skage Lysgaard. Fikk litt tips for å implementere Locations av gruppeleder Rikke. Har også kommentert store deler av koden, er ikke sikkert svarene i denne filen er like forståelige. 
+Fikk litt dårlig tid til å gjøre oppgave 7, men fikk forståelse på hvordan et objekt fungerer i spillet. 
 
 ## Spørsmål
 
@@ -99,13 +100,14 @@ Brukte funksjonen til getNeighbourhood i getReachable, og den bestod testene.
 ## Oppgave 5
 
 ### 5.1)
-(svar her)
+Kjørte main metoden. Det tar ikke mange moves før kanine går tom for energi. 
 
 ### 5.2)
-(svar her)
+Implementerte metoden directionTo. Gjorde først et forsøk å returnere retningene basert på dx og dy verdiene. Det fungerte ikke, klarte ikke feilsøke nok til å finne ut hvorfor. 
+Valgte derfor å skrive en funksjon som bruker en for-each loop. Den sjekker om distansen til neighbor er mindre enn enn distansen mellom location og punktet, og returnerer dir om det er true. 
 
 ### 5.3)
-(svar her)
+Endret i doTurn for å gjøre Rabbit smartere. Brukte metoden getNearbyItems. Bedre forklaring i kommentarene i koden. 
 
 ### 5.4)
 (svar her)
@@ -116,21 +118,29 @@ Brukte funksjonen til getNeighbourhood i getReachable, og den bestod testene.
 ## Oppgave 6
 
 ### 6.1)
-Gjorde oppgave 6 i samarbeid med Skage Lysgaard og Belmin Husanovic.
+
+Se pickUp metoden i Player klassen for kommentarer. 
+
+For hasItemm returnerer man bare inventory.contains(item). Den returnerer true om listen inneholder itemet. 
 
 ### 6.2)
-(Svar her)
+Lager en metode som sjekker om inventory er tomt eller ikke. Om det er tomt, displayes en melding om at det er tomt. 
+Om det ikke er tomt, dropper den det første itemet i listen. 
 
 ### 6.3)
-(Svar her)
+Se koden for kommentaren. 
 
 ## Fri oppgave (Oppg. 7)
 
 ### Plan
-(Skriv planen her)
+
+Planen er å lage et IActor Objekt som oppfører seg relativt likt som Rabbits. 
+
 
 ### Utførelse
-(Forklar i korte trekk hva du har gjort)
+Lager et nytt objekt, som heter Snail. Må derfor lage en ny klasse, og tar utgangspunkt i klassen Spider. Må forandre i ItemFactory for å få den til å returnere SYMBOL, og må også endre i drawSnail i klassen DrawHelper. 
+
+Fikk ikke tid til å endre på hvordan den oppfører seg, men kunne fungert som en vanlig aktør, likt som Rabbit. 
 
 ### Flere utvidelser
-(Legg inn eventuelle flere utvidelser du har gjort her)
+
