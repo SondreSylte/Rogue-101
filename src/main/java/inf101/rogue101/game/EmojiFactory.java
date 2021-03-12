@@ -20,14 +20,15 @@ public class EmojiFactory {
 	 * <p>
 	 * 
 	 */
-	public static boolean USE_EMOJI = false;
+	public static boolean USE_EMOJI = true;
 	
 	public String getEmoji(IItem item) {
 		if (USE_EMOJI) {
 			return item.getEmoji();
-		} else {
-			return item.getGraphicTextSymbol();
 		}
 
+		else {
+			return item.getGraphicTextSymbol();
+		}
 	}
 }

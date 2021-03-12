@@ -28,58 +28,7 @@ public class Rabbit implements IActor {
 	private int hp = getMaxHealth();
 
 	@Override
-	public void doTurn(IGameView game)/*{
-		boolean isHungry = getMaxHealth()-getCurrentHealth()>2;
-		if(isHungry) {
-			boolean gotFood = eatIfPossible(game);
-			if(gotFood) {
-				//Rabbit is full and prefers to rest
-				return;
-			}
-		}
-
-		List<GridDirection> possibleMoves = game.getPossibleMoves();
-		List<IItem> nearbyItems = game.getNearbyItems(10);
-		GridDirection carrotDirection = null;
-		for(IItem item : nearbyItems) {
-			if(item instanceof Carrot) {
-				carrotDirection = game.getDirectionTo(item);
-				if(possibleMoves.contains(carrotDirection)) {
-					performMove(game, carrotDirection);
-				}
-				else if(!possibleMoves.contains(carrotDirection)){//dersom cDirection ikke kan gå i retning gulrot
-					int index = GridDirection.EIGHT_DIRECTIONS.indexOf(carrotDirection);//Finner indexen til
-					for(GridDirection dir : possibleMoves) {
-						performMove(game, dir);
-					}
-				}
-			}
-		}
-
-		if(carrotDirection == null) {
-			GridDirection dir = selectMove(game);
-
-			for(GridDirection carrotDir : GridDirection.EIGHT_DIRECTIONS) {
-				if(game.containsItem(carrotDir, Carrot.class)) {
-					dir = carrotDir;
-				}
-				performMove(game,dir);
-
-			}
-		}
-	}
-
-
-
-	public GridDirection goAround() {
-
-		return null;
-	}*/
-
-
-
-	{
-
+	public void doTurn(IGameView game) {
 		boolean isHungry = getMaxHealth() - getCurrentHealth() > 2;
 		if (isHungry) {
 			boolean gotFood = eatIfPossible(game);
@@ -88,24 +37,21 @@ public class Rabbit implements IActor {
 			}
 		}
 
-
-		List<IItem> nearbyItems = game.getNearbyItems(10);
-		GridDirection nearbyCarrot = null;
-		for (IItem item : nearbyItems) {
-			if (item instanceof Carrot) {
-				nearbyCarrot = game.getDirectionTo(item);
-				System.out.println("Carrot direction" + nearbyCarrot.toString());
-				//performMove(game,nearbyCarrot);
-				break;
+		List<IItem> nearbyItems = game.getNearbyItems(10); //lager en liste over items som ligger i nærheten av center.
+		GridDirection nearbyCarrot = null; //lagrer nearbyCarrot som en tom variabel, slik at om den ikke finner en carrot, returnerer den null.
+		for (IItem item : nearbyItems) { //For-each loop brukt til å loope gjennom elementer (Items) i liste (nearbyItems).
+			if (item instanceof Carrot) { //sjekker om item er en forekomst av Carrot-klassen.
+				nearbyCarrot = game.getDirectionTo(item); //finner retningen til nearbyCarrot om carrot er funnet.
+				break; //hopper ut av loop
 			}
 		}
 		if (nearbyCarrot != null) {
-			if (game.canGo(nearbyCarrot)) {
-				performMove(game, nearbyCarrot);
+			if (game.canGo(nearbyCarrot)) { //canGo om det er mulig å gå i retningen.
+				performMove(game, nearbyCarrot); //gjør et move, brenner energi
 				return;
 			}
+
 		} else {
-			//GridDirection direction = selectMove(game);
 			for (GridDirection carrotDirection : GridDirection.EIGHT_DIRECTIONS) {
 				if (game.containsItem(carrotDirection, Carrot.class)) {
 					if (game.canGo(carrotDirection)) {
@@ -113,19 +59,11 @@ public class Rabbit implements IActor {
 						return;
 					}
 				}
-
 			}
 		}
 		GridDirection dir = selectMove(game);
 		performMove(game, dir);
-
-
-
-
 }
-
-
-
 
 	/**
 	 * This method selects which move the Rabbit want to make.
@@ -136,7 +74,7 @@ public class Rabbit implements IActor {
 		if (possibleMoves.size() > 0 )
 			return possibleMoves.get(0);
 		else return GridDirection.CENTER;
-		//return possibleMoves.get(0);
+
 	}
 
 	/**

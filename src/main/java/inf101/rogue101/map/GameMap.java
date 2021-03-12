@@ -169,13 +169,58 @@ public class GameMap implements IGameMap {
 		else if (dist == 0)
 			return new ArrayList<>();// empty!
 
-		//List to be returned with all neighbours
+		//Returnerer liste med alle neighbors.
 		List<Location> Neighbourhood = new ArrayList<>();
 		Location tempLocation;
-		//Add the current location so that set is not empty when iterated over
+		//Legger til current location slik at settet ikke er tomt når det itereres over.
 		Neighbourhood.add(loc);
 
-		//For loop to repeat process for all dist.
+		//For loop for å repetere for alle dist.
+		for (int i = 0; i < dist; i++) {
+			List<Location> tempList = new ArrayList<>(Neighbourhood); //midlertidig liste
+			for (Location currentLocation : tempList) { //for-each loop for å loope gjennom currentLocation i tempList.
+				for(GridDirection dir : GridDirection.EIGHT_DIRECTIONS){ //for-each loop for directions i alle 8 retninger.
+					if (canGo(currentLocation, dir)){ //sjekker om det er mulig å gå i retningen.
+						tempLocation = currentLocation.getNeighbor(dir); //setter tempLocation til currentLocation. Sjekker nabolcellene.
+						if (!Neighbourhood.contains(tempLocation)){ //Om listen allerede ikke inneholder tempLocation,
+							Neighbourhood.add(tempLocation);//da legges tempLocation til i Neighbourhood.
+						}
+					}
+				}
+			}
+
+		}
+		Neighbourhood.remove(loc); //fjerner lokasjonen vi står i, slik at bare nabolaget er i listen.
+		Collections.sort(Neighbourhood, new LocationComparator(loc)); //sorterer lokasjoner i riktig rekkefølge.
+		return Neighbourhood;
+
+	}
+
+	
+
+	@Override
+	public List<GridDirection> getPossibleMoves(Location currentLocation) {
+		List<GridDirection> possibleMoves = new ArrayList<>(); //lager en liste for mulige moves.
+		for (GridDirection direction : GridDirection.EIGHT_DIRECTIONS) { //for-each loop for alle retninger.
+			if (canGo(currentLocation, direction)) //bruker metoden canGo, som tar inn location "from" og retning "til".
+				possibleMoves.add(direction); //legger retning for forflytning inn i listen om det er mulig.
+		}
+		return possibleMoves; // TODO: Finished
+	}
+
+
+	@Override
+	public List<Location> getReachable(Location loc, int dist) {
+		if (dist < 0 || loc == null)
+			throw new IllegalArgumentException();
+		else if (dist == 0)
+			return new ArrayList<>();
+
+		List<Location> Neighbourhood = new ArrayList<>();
+		Location tempLocation;
+
+		Neighbourhood.add(loc);
+
 		for (int i = 0; i < dist; i++) {
 			List<Location> tempList = new ArrayList<>(Neighbourhood);
 			for (Location currentLocation : tempList) {
@@ -188,29 +233,10 @@ public class GameMap implements IGameMap {
 					}
 				}
 			}
-
 		}
 		Neighbourhood.remove(loc);
-		Collections.sort(Neighbourhood, new LocationComparator(loc));
+		//Collections.sort(Neighbourhood, new LocationComparator(loc));
 		return Neighbourhood;
-
-	}
-
-	
-
-	@Override
-	public List<GridDirection> getPossibleMoves(Location currentLocation) {
-		List<GridDirection> possibleMoves = new ArrayList<>();
-		for (GridDirection direction : GridDirection.EIGHT_DIRECTIONS) {
-			if (canGo(currentLocation, direction))
-				possibleMoves.add(direction);
-		}
-		return possibleMoves; // TODO: Finished
-	}
-
-	@Override
-	public List<Location> getReachable(Location loc, int dist) {
-		return new ArrayList<>();
 	}
 
 	@Override

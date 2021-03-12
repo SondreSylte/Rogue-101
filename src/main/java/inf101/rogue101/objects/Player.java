@@ -31,8 +31,8 @@ public class Player implements IPlayer {
 	private int damage;
 	private int hp;
 	private String name;
-	private IItem hand = null;
-	List<IItem> inventory = new ArrayList<>();
+
+	List<IItem> inventory;
 
 	public Player() {
 		attack = 10;
@@ -40,6 +40,7 @@ public class Player implements IPlayer {
 		damage = 3;
 		hp = Player.MAXHEALTH;
 		name = System.getProperty("user.name");
+		this.inventory =  new ArrayList<>();
 	}
 
 	@Override
@@ -142,41 +143,40 @@ public class Player implements IPlayer {
 	}
 
 	private void showStatus(IGameView game) {
-		if (hand == null) {
-			game.displayMessage("The hand is empty!");
+		if (inventory.isEmpty()) { //
+			game.displayMessage("The hand is empty!"); //viser at hand er tom ved å vise det visuelt i spillet
 		}else {
-			game.displayMessage("Player has " + this.hp + " hp left holding " + this.hand.getLongName());
+			String s = " ";
+			for(IItem i : inventory){ //for-each loop, for hvert item i inventory
+				s = s + i.getLongName() + ", "; //bruker metoden getLongName for å legge til namn for item i inventory.
+			}
+			game.displayMessage("Player has " + this.hp + "hp left and " + s + "in inventory");
 		}
-
 	}
 
 	private void pickUp(IGameView game) {
-		List<IItem> items = game.getLocalNonActorItems();
-		if(!items.isEmpty()) {
-			Collections.sort(items,new IItemComparator());
-			Optional<IItem> found = game.pickUp(items.get(items.size()-1));
-			if(found.isPresent())
-				if (hand == null) {
-					hand = found.get();
-				}
-			else {
-				inventory.add(found.get());
-				}
+		List<IItem> items = game.getLocalNonActorItems(); //liste items, som henter non-actor items på lokasjonen den spilleren står i.
 
-				game.displayMessage("Picked up"+found.get().getLongName());
+		if(!items.isEmpty()) {
+			Collections.sort(items, new IItemComparator()); //Sorterer items.
+			Optional<IItem> found = game.pickUp(items.get(items.size() - 1)); //Liste for items som blir plukket opp.
+			found.ifPresent(iItem -> inventory.add(iItem)); //IntelliJ foreslo dette.
+			game.displayMessage("Picked up: " + found.get().getLongName());
 		}
+		else{
+			game.displayMessage("Nothing to pick up.");
+		}
+
 	}
 
 	private void drop(IGameView game) {
-		if (inventory == null){
+		if (inventory.isEmpty()){ //sjekker om inventory er tomt.
 			game.displayMessage("Holds nothing");
 		}
-		if (!(hand == null)) {
-			game.drop(hand);
-			if (!inventory.isEmpty()) {
-				hand = inventory.get(0);
-			}
+		else { //om inventory ikke er tomt, dropper den det første itemet i listen.
+			game.drop(inventory.remove(0));
 		}
+		showStatus(game);
 	}
 
 	@Override
@@ -190,7 +190,7 @@ public class Player implements IPlayer {
 
 	@Override
 	public boolean hasItem(IItem item) {
-		return inventory.contains(item) || hand.equals(item);
+		return inventory.contains(item) ;
 	}
 	
 	@Override

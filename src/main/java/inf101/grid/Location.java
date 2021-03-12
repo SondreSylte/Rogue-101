@@ -83,25 +83,17 @@ public class Location {
 	 * @return The direction to go in.
 	 */
 	public GridDirection directionTo(Location loc) {
-
-
-		/*for (GridDirection dir : GridDirection.EIGHT_DIRECTIONS) {
-			Location neigh = getNeighbor(dir);
-			if (neigh.equals(loc)) {
-				return dir;
-			}
-		}
-		return GridDirection.CENTER;
-	}
-}*/
-		int dist = this.gridDistanceTo(loc);
+		int distance = this.gridDistanceTo(loc); //korteste distansen mellom to punkter
 		for (GridDirection dir : GridDirection.EIGHT_DIRECTIONS) {
-			if (dist > this.getNeighbor(dir).gridDistanceTo(loc))
-				return dir;
+			Location neighbor = this.getNeighbor(dir); //finner nabolokasjonen i den gitte retningen
+			if (distance > neighbor.gridDistanceTo(loc)) //om distansen til neighbor er mindre enn distansen mellom location
+				return dir; //og punktet, returneres direction.
 		}
 		return GridDirection.CENTER;
 
-		/*
+		/* Prøvde denne implementeringen av directionTo, men fungerte ikke. Selv om implementeringen
+			så ut til å være riktig med tanke på hvordan en grid fungerer, så bevegde rabbit seg i motsatt
+			retning av gulrøttene. Prøvde derfor en annen implementering som fungerte.
 
 		int dy = ((loc.col - col) / Math.max(1, Math.abs(loc.col - col)));
 		int dx = ((loc.row - row) / Math.max(1, Math.abs(loc.row - row)));
@@ -128,24 +120,5 @@ public class Location {
 		 */
 	}
 }
-/*
-	  	// TODO Auto-generated method stub
-		Location current = new Location(row, col); //Opprinnelig Location
-		GridDirection returnDirection = null;
-		int manhattanDistance = current.gridDistanceTo(loc);
-		for(GridDirection direction : GridDirection.EIGHT_DIRECTIONS) {
-			Location neighbor = current.getNeighbor(direction);
-			if(neighbor.gridDistanceTo(loc) < manhattanDistance){//Dersom avstanden fra naboen i 'direction' er mindre en det avstanden var fra opprinnelig Location
-				returnDirection = direction; //Setter return statement til direction
-				manhattanDistance = neighbor.gridDistanceTo(loc);
-			}
-		}
-		/*
-		 * lager to variabler: distance og temp
-		 * while manhattandistance > 0, regn ut manhattan distance = temp utenfor. Dersom den minker temp2 = temp, kjør loop igjen
 
-
-		return returnDirection;
-	}
-}*/
 
