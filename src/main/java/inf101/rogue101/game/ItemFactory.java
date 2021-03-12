@@ -26,6 +26,8 @@ public class ItemFactory {
 				return new Dust();
 			case Gold.SYMBOL:
 				return new Gold();
+			case Snail.SYMBOL:
+				return new Snail();
 		case ' ':
 			return null;
 		default : 	
