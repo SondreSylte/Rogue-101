@@ -132,7 +132,7 @@ Se koden for kommentaren.
 ## Fri oppgave (Oppg. 7)
 
 ### Plan
-(Skriv planen her)
+
 
 ### Utførelse
 (Forklar i korte trekk hva du har gjort)
