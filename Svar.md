@@ -4,6 +4,7 @@
 
 ## Kommentarer
 Har i deler av oppgaven samarbeidet godt med Åsmund Groven (oppg 4). Har også diskutert oppgave 6 med Belming Husanovic og Skage Lysgaard. Fikk litt tips for å implementere Locations av gruppeleder Rikke. Har også kommentert store deler av koden, er ikke sikkert svarene i denne filen er like forståelige. 
+Fikk litt dårlig tid til å gjøre oppgave 7, men fikk forståelse på hvordan et objekt fungerer i spillet. 
 
 ## Spørsmål
 
@@ -133,9 +134,13 @@ Se koden for kommentaren.
 
 ### Plan
 
+Planen er å lage et IActor Objekt som oppfører seg relativt likt som Rabbits. 
+
 
 ### Utførelse
-(Forklar i korte trekk hva du har gjort)
+Lager et nytt objekt, som heter Snail. Må derfor lage en ny klasse, og tar utgangspunkt i klassen Spider. Må forandre i ItemFactory for å få den til å returnere SYMBOL, og må også endre i drawSnail i klassen DrawHelper. 
+
+Fikk ikke tid til å endre på hvordan den oppfører seg, men kunne fungert som en vanlig aktør, likt som Rabbit. 
 
 ### Flere utvidelser
-(Legg inn eventuelle flere utvidelser du har gjort her)
+
