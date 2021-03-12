@@ -134,7 +134,7 @@ Se koden for kommentaren.
 
 ### Plan
 
-Planen er å lage et IActor Objekt som oppfører seg relativt likt som Rabbits. 
+Planen er å lage et IActor Objekt som oppfører seg relativt likt som Spider. 
 
 
 ### Utførelse
