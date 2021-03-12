@@ -100,10 +100,7 @@ public class Snail implements IActor {
         for(GridDirection dir : GridDirection.EIGHT_DIRECTIONS) {
             if(dir.equals(GridDirection.CENTER))
                 continue;
-            if(game.containsItem(dir, IActor.class)) {
-                game.attack(dir);
-                return;
-            }
+
         }
 
         List<GridDirection> moves = game.getPossibleMoves();
